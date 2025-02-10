@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapps/RegPage.dart';
+import 'dart:io' show Platform;
 
 class HomePageWidget extends StatefulWidget {
   const HomePageWidget({super.key});
@@ -10,6 +11,28 @@ class HomePageWidget extends StatefulWidget {
 
 class _HomePageWidgetState extends State<HomePageWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  void _navigateBasedOnPlatform(BuildContext context) {
+    if (Platform.isAndroid || Platform.isIOS) {
+      // Navigate to RegPageWidget for mobile platforms
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const RegPageWidget()),
+      );
+    } else if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
+      // Navigate to RegPageWidget for desktop platforms
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const RegPageWidget()),
+      );
+    } else {
+      // Handle other platforms if necessary
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const RegPageWidget()),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,10 +83,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const RegPageWidget()));
+                    _navigateBasedOnPlatform(context);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF0518EB),
