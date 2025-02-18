@@ -1,4 +1,4 @@
-# myapps
+# agmm_registration
 
 A new Flutter project.
 
